@@ -1,0 +1,204 @@
+.border {
+    border: 1px solid red;
+}
+.border-magenta {
+    border: 1px solid magenta;
+}
+
+/* App common style rules. */
+.flex {
+    display: flex;
+}
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+.j-center {
+    justify-content: center;
+}
+.j-between {
+    justify-content: space-between;
+}
+.j-around {
+    justify-content: space-around;
+}
+.a-center {
+    align-items: center;
+}
+.a-around {
+    align-items: space-around;
+}
+.h100 {
+    height: 100%;
+}
+.mt-2 {
+    margin-top: 1rem;
+}
+.mb-1 {
+    margin-bottom: 0.5rem;
+}
+.mb-2 {
+    margin-bottom: 1rem;
+}
+.mr-1 {
+    margin-right: 0.5rem;
+}
+.mr-2 {
+    margin-right: 1rem;
+}
+.mr-3 {
+    margin-right: 2rem;
+}
+.pt-4 {
+    padding-top: 3rem;
+}
+.pb-2 {
+    padding-bottom: 1rem;
+}
+.pb-4 {
+    padding-bottom: 3rem;
+}
+.px-4 {
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+}
+.py-2 {
+    padding: 1rem 0;
+}
+.py-3 {
+    padding: 2rem 0;
+}
+.py-4 {
+    padding: 3rem 0;
+}
+.text-center {
+    text-align: center;
+}
+.min-width-270px {
+    min-width: 270px;
+}
+
+/* Text style rules. */
+.text-title {
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.5;
+}
+.text-white {
+    color: var(--white-color);
+}
+.text-gray-100 {
+    color: var(--gray-100);
+}
+.text-gray-900 {
+    color: var(--gray-900);
+}
+.fw-200 {
+    font-weight: 200;
+}
+
+/* component style rules. */
+.header {
+    background-color: var(--main-color);
+}
+.content {
+    color: var(--white-color);
+}
+.top5-tile, .fixed-tile {
+    background-color: lightgray;
+    border-radius: 12px;
+    min-height: 260px;
+}
+.fixed-tile {
+    min-width: 467px;
+}
+
+/* --- HomePage css rules --- */
+.home-page {
+    background: linear-gradient(180deg, rgb(0, 0, 0) 5.8%, rgb(243, 4, 4) 180%);
+}
+
+/* --- MovieDetails css rules --- */
+.movie-details {
+    position: relative;
+    /* background-color: rgb(41, 0, 0); */
+    background: linear-gradient(180deg, rgb(0, 0, 0) 5.8%, rgb(243, 4, 4) 180%);
+}
+.movie-details .hero {
+    background-color: var(--gray-800);
+    color: var(--white-color);
+    min-height: 400px;
+    position: relative;
+    /* padding: 1rem 0; */
+}
+.movie-details .hero .image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 0;
+}
+.movie-details .hero .top-shadow {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 130px;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.02)
+    );
+}
+.movie-details .hero-content {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 160px;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.0),
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.8),
+        rgba(0, 0, 0, 0.9)
+    );
+}
+
+.movie-details .hero-content .ant-badge sup {
+    height: 27px;
+    width: 90px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(54, 40, 56, 0.6);
+    box-shadow: 0 0 0 1px var(--magenta-800);
+}
+
+.movie-details .cinema-chairs {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: transparent;
+}
+
+@media (max-width: 576px) {
+    /* .top-tiles .ant-row {
+        margin-bottom: 0;
+        min-width: 270px;
+    } */
+    .top-tiles .ant-col {
+        margin-right: 0;
+    }
+    .top5-tile, .fixed-tile {
+        margin-bottom: 1rem;
+    }
+    .fixed-tile {
+        min-width: 85vw;
+    }
+}
+
+@media (max-width: 365px) {
+    .movie-details .hero-content .ant-badge sup {
+        width: 82.7vw;
+    }
+}
