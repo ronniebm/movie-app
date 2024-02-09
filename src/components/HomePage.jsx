@@ -6,7 +6,7 @@ import { sortByPopularityDesc, setStateHelper } from '../helpers';
 
 import { useQueries, useQuery } from '@tanstack/react-query';
 import { movieApi } from '../services';
-import { MovieCard } from './shared';
+import { MovieCard, MovieCardFixed } from './shared';
 
 const HomePage = () => {
 
@@ -53,10 +53,10 @@ const HomePage = () => {
 
                 <div className='flex-col a-center py-3'>
                     <p className='pb-4 text-title text-white'>More Like This</p>
-                    {/* <MovieCard data={state.trendMovies && state.trendMovies[0]}/> */}
-                    <div className='fixed-tile mb-2'></div>
-                    <div className='fixed-tile mb-2'></div>
-                    <div className='fixed-tile mb-2'></div>
+
+                    {state.trendMovies?.slice(6).map((movie) => (
+                        <MovieCardFixed key={movie.id} data={movie} state={state} />
+                    ))}
                 </div>
             </Col>
         </Row>
