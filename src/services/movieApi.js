@@ -1,7 +1,6 @@
 
 const apiUrl = 'https://api.themoviedb.org';
-const apiKey = 'b19174298b20aa6ab8a128e0614b0ab1'; // testing
-// const apiReadAccessToken = 'tu_api_read_access_token';
+const apiKey = 'b19174298b20aa6ab8a128e0614b0ab1';
 
 const movieApi = {
     fetchTrendingMovies: async () => {

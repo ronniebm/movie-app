@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { TopTiles } from './shared';
 import { Col, Row } from 'antd';
-import { sortByPopularityDesc, setStateHelper } from '../helpers';
-
-import { useQueries, useQuery } from '@tanstack/react-query';
+import { sortByPopularityDesc } from '../helpers';
+import { useQuery } from '@tanstack/react-query';
 import { movieApi } from '../services';
-import { MovieCard, MovieCardFixed } from './shared';
+import { MovieCardFixed } from './shared';
 
 const HomePage = () => {
 
@@ -32,16 +30,12 @@ const HomePage = () => {
         if (trendMoviesQuery.isSuccess && movieGenresQuery.isSuccess) {
             const trendMovies = trendMoviesQuery?.data?.results;
             const movGenres = movieGenresQuery?.data?.genres;
-
-            console.log('trendMovies:', trendMovies);
-            console.log('movGenres:', movGenres);
             setState((prevState) => ({
               ...prevState,
               trendMovies: sortByPopularityDesc(trendMovies),
               movieGenres: movGenres,
             }));
         };
-
     }, [trendMoviesQuery, movieGenresQuery]);
 
     return(

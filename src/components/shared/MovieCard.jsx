@@ -5,7 +5,6 @@ const MovieCard = ({ data }) => {
     const navigate = useNavigate();
 
     const handleMovieCardClick = (movieId) => {
-        console.log('MovieCardClicked: ', movieId);
         navigate(`/movie-details/${movieId}`);
     };
 

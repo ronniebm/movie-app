@@ -5,11 +5,10 @@ import { useQuery } from '@tanstack/react-query';
 import { movieApi } from '../services';
 import cinemaChairs from '../assets/cinema-chairs.svg';
 import { getMovieImgUrlOriginal, formatMovieInfo } from '../helpers';
-import { MovieCard, MovieCardFixed } from './shared';
+import { MovieCardFixed } from './shared';
 
 const MovieDetails = () => {
     const { movieId } = useParams();
-    console.log('movieId: ', movieId);
 
     const [state, setState] = useState({
         error: false,
@@ -33,7 +32,6 @@ const MovieDetails = () => {
         queryFn:  () => movieApi.fetchMovieRecommendations(movieId)
     });
 
-
     useEffect(() => {
         if (state.movieDetails && state.movieCast && state.movieRecommendations) return;
 
@@ -46,7 +44,6 @@ const MovieDetails = () => {
                 cast: movieCast?.cast?.slice(0, 5),
             }
             const movieRecommendations = recommendationsQuery?.data?.results;
-            console.log('movieRecommendations: ', movieRecommendations);
 
             setState((prevState) => ({
                 ...prevState,
@@ -57,9 +54,7 @@ const MovieDetails = () => {
                 movieCast: movieCastFilteredData,
                 movieRecommendations
             }));
-
         }
-
     }, [movieDetailsQuery]);
 
     return(
@@ -83,7 +78,6 @@ const MovieDetails = () => {
                         </div>
                     </Col>
                 </Row>
-
             </div>
 
             <Row className='flex j-center a-center'>
@@ -97,12 +91,10 @@ const MovieDetails = () => {
 
             <div className='flex-col a-center py-3'>
                 <p className='pb-4 text-title text-white'>Recommendations</p>
-                {/* <MovieCard data={state.movieRecommendations && state.movieRecommendations[0]} /> */}
-                {/* {state.movieRecommendations?.map((movie) => <MovieCard data={movie} />)} */}
                 {state.movieRecommendations?.map((movie) => (
-                    <MovieCardFixed data={movie} />
+                    <MovieCardFixed key={movie.title} data={movie} />
                 ))}
-                
+
             </div>
 
             <img

@@ -11,7 +11,6 @@ const MovieCardFixed = ({ data, state }) => {
     }
 
     const handleMovieCardClick = (movieId) => {
-        console.log('MovieCardClicked: ', movieId);
         navigate(`/movie-details/${movieId}`);
         window.location.reload();
     };
