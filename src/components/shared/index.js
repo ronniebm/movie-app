@@ -3,3 +3,4 @@
 // ------------------------------------------------------
 export { default as TopTiles } from './TopTiles';
 export { default as MovieCard } from './MovieCard';
+export { default as MovieCardFixed } from './MovieCardFixed';
