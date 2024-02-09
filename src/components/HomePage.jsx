@@ -1,11 +1,15 @@
+import { useNavigate } from 'react-router-dom';
 import { TopTiles } from './shared';
 import { Col, Row } from 'antd';
 
 const HomePage = () => {
+    const navigateTo = useNavigate();
+
     return(
         <Row className='home-page flex j-center'>
             <Col className="gutter-row" xl={18} lg={19} md={20} sm={22} xs={20}>
-
+                
+                <button onClick={() => navigateTo('/movie-details')}>Navigate</button>
                 {/* --- Top-5-Movies, First Row --- */}
                 <TopTiles />
                 

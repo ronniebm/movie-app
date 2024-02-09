@@ -13,7 +13,7 @@ const MovieDetails = () => {
 
                 <div className='top-shadow'/>
                 <Row className='hero-content flex j-center a-center'>
-                    <Col className="gutter-row border" xl={13} lg={14} md={16} sm={18} xs={20}>
+                    <Col className="gutter-row" xl={13} lg={14} md={16} sm={18} xs={20}>
                         <h1 className='text-title text-white'>The Marvels</h1>
                         <p className='text-gray-100'>2024 - 1h 45m</p>
                         <div className='mt-2'>
@@ -27,7 +27,7 @@ const MovieDetails = () => {
             </div>
 
             <Row className='flex j-center a-center'>
-                <Col className="gutter-row py-2 border" xl={13} lg={14} md={16} sm={18} xs={20}>
+                <Col className="gutter-row py-2" xl={13} lg={14} md={16} sm={18} xs={20}>
                     <p className='text-white fw-200'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 </Col>
             </Row>
