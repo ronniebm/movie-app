@@ -1,12 +1,52 @@
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { Badge, Col, Row } from 'antd';
+import { useQuery } from '@tanstack/react-query';
+import { movieApi } from '../services';
 import cinemaChairs from '../assets/cinema-chairs.svg';
+import { getMovieImgUrlOriginal, getMovieImgUrl500 } from '../helpers';
 
 const MovieDetails = () => {
+    const { movieId } = useParams();
+    console.log('movieId: ', movieId);
+
+    const [state, setState] = useState({
+        error: false,
+        movieDetails: undefined,
+    });
+
+    const movieDetailsQuery = useQuery({
+        queryKey: ['movie-details', movieId],
+        queryFn:  () => movieApi.fetchMovieDetails(movieId)
+      });
+
+    useEffect(() => {
+        if (state.movieDetails) return;
+
+        const movieDetails = movieDetailsQuery?.data;
+        console.log('movieDetailsQuery: ', movieDetailsQuery);
+        console.log('movieDetails: ', movieDetails);
+        const backdrop_path = movieDetails?.backdrop_path;
+        console.log('imageUrl: ', backdrop_path && getMovieImgUrl500(backdrop_path));
+
+        setState((prevState) => ({
+            ...prevState,
+            movieDetails: {
+                ...movieDetails,
+            },
+        }));
+
+    }, [movieDetailsQuery]);
+
+    // useEffect(() => {
+    //     console.log('backkkk: ', state.movieDetails?.backdrop_path);
+    // }, [state.movieDetails]);
+
     return(
         <div className='movie-details'>
             <div className='hero'>
                 <img
-                    src='https://staticg.sportskeeda.com/editor/2023/04/e42b8-16817914737548-1920.jpg'
+                    // src={state.movieDetails && state.movieDetails?.imageUrl}
                     className="image"
                     alt='movie-image'
                 />
