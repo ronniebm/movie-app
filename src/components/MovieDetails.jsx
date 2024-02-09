@@ -6,9 +6,11 @@ import { movieApi } from '../services';
 import cinemaChairs from '../assets/cinema-chairs.svg';
 import { getMovieImgUrlOriginal, formatMovieInfo } from '../helpers';
 import { MovieCardFixed } from './shared';
+import { useQueryClient, } from '@tanstack/react-query'
 
 const MovieDetails = () => {
     const { movieId } = useParams();
+    const queryClient = useQueryClient();
 
     const [state, setState] = useState({
         error: false,
@@ -31,6 +33,12 @@ const MovieDetails = () => {
         queryKey: ['movie-recommendations', movieId],
         queryFn:  () => movieApi.fetchMovieRecommendations(movieId)
     });
+
+    // useEffect(() => {
+    //     queryClient.refetchQueries(['movie-details']);
+    //     queryClient.refetchQueries(['movie-cast']);
+    //     queryClient.refetchQueries(['movie-recommendations']);
+    // }, []);
 
     useEffect(() => {
         if (state.movieDetails && state.movieCast && state.movieRecommendations) return;
