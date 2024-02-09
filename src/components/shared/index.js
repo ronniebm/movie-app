@@ -2,3 +2,4 @@
 // It makes the import statements cleaner.
 // ------------------------------------------------------
 export { default as TopTiles } from './TopTiles';
+export { default as MovieCard } from './MovieCard';
