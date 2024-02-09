@@ -38,7 +38,7 @@ const MovieCardFixed = ({ data, state }) => {
         // queryClient.fetchQuery(['movie-cast']);
         // queryClient.fetchQuery(['movie-recommendations']);
         navigate(`/movie-details/${movieId}`);
-        window.location.reload();
+        // window.location.reload();
     };
 
     return(
