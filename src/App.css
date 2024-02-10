@@ -123,7 +123,7 @@
     color: var(--white-color);
 }
 .top5-tile, .fixed-tile {
-    background-color: lightgray;
+    background-color: black;
     border-radius: 12px;
     min-height: 260px;
 }
