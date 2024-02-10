@@ -17,6 +17,8 @@ const MovieDetails = () => {
         movieRecommendations: undefined,
     });
 
+    const [, forceUpdate] = useState();
+
     const movieDetailsQuery = useQuery({
         queryKey: ['movie-details', movieId],
         queryFn:  () => movieApi.fetchMovieDetails(movieId)
@@ -92,7 +94,7 @@ const MovieDetails = () => {
             <div className='flex-col a-center py-3'>
                 <p className='pb-4 text-title text-white'>Recommendations</p>
                 {state.movieRecommendations?.map((movie) => (
-                    <MovieCardFixed key={movie.title} data={movie} />
+                    <MovieCardFixed key={movie.title} data={movie} forceUpdate={forceUpdate} />
                 ))}
 
             </div>

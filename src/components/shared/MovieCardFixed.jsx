@@ -3,7 +3,7 @@ import { useQueryClient, } from '@tanstack/react-query'
 import { getMovieImgUrl780 } from "../../helpers";
 import { movieApi } from "../../services";
 
-const MovieCardFixed = ({ data, state }) => {
+const MovieCardFixed = ({ data, state, forceUpdate }) => {
     const navigate = useNavigate();
     const location = useLocation();
     const queryClient = useQueryClient();
@@ -17,23 +17,12 @@ const MovieCardFixed = ({ data, state }) => {
 
     const handleMovieCardClick = (movieId) => {
         const isMovieDetailsLocation = location.pathname.includes('movie-details');
-
-        // queryClient.fetchQuery({
-        //     queryKey: ['movie-details', movieId],
-        //     queryFn: () => movieApi.fetchMovieDetails(movieId),
-        // });
-        // queryClient.fetchQuery({
-        //     queryKey: ['movie-cast', movieId],
-        //     queryFn: () => movieApi.fetchMovieCast(movieId),
-        // });
-        // queryClient.fetchQuery({
-        //     queryKey: ['movie-recommendations', movieId],
-        //     queryFn: () => movieApi.fetchMovieRecommendations(movieId),
-        // });
-        // queryClient.fetchQuery(['movie-cast']);
-        // queryClient.fetchQuery(['movie-recommendations']);
+        if (isMovieDetailsLocation) {
+            queryClient.clear();
+            navigate(`/movie-details/${movieId}`);  
+            forceUpdate();
+        };
         navigate(`/movie-details/${movieId}`);
-        isMovieDetailsLocation && window.location.reload();
     };
 
     return(
