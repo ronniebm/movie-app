@@ -18,7 +18,7 @@ const TopTiles = ({ state }) => {
     return(
         <div className='top-tiles pb-2'>
             {/* --- Top-5-Movies, First Row --- */}
-            <Row className='flex j-center pt-4 mb-2'>
+            <Row className='flex j-center pt-3 mb-2'>
                 <Col xxl={9} xl={12} lg={8} md={8} sm={8} xs={24} className='mr-2'>
                     <MovieCard data={!!data && data[0]} />
                 </Col>

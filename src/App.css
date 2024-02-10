@@ -48,8 +48,14 @@
 .mr-3 {
     margin-right: 2rem;
 }
+.ml-2 {
+    margin-left: 1rem;
+}
 .pt-2 {
     padding-top: 1rem;
+}
+.pt-3 {
+    padding-top: 2rem;
 }
 .pt-4 {
     padding-top: 3rem;
@@ -59,6 +65,9 @@
 }
 .pb-4 {
     padding-bottom: 3rem;
+}
+.pb-15 {
+    padding-bottom: 15rem;
 }
 .px-2 {
     padding-left: 1rem !important;
@@ -117,7 +126,7 @@
     color: var(--white-color);
 }
 .top5-tile, .fixed-tile {
-    background-color: lightgray;
+    background-color: black;
     border-radius: 12px;
     min-height: 260px;
 }
@@ -131,6 +140,9 @@
 }
 
 /* --- MovieDetails css rules --- */
+.app-icon {
+    width: 100px;
+}
 .movie-details {
     position: relative;
     /* background-color: rgb(41, 0, 0); */
@@ -171,12 +183,12 @@
         rgba(0, 0, 0, 0.0),
         rgba(0, 0, 0, 0.5),
         rgba(0, 0, 0, 0.8),
-        rgba(0, 0, 0, 0.9)
+        rgba(0, 0, 0, 1)
     );
 }
 .movie-details .hero-content .ant-badge sup {
     height: 27px;
-    width: 90px;
+    width: 110px;
     border-radius: 12px;
     display: flex;
     justify-content: center;
@@ -184,11 +196,18 @@
     background-color: rgba(54, 40, 56, 0.6);
     box-shadow: 0 0 0 1px var(--magenta-800);
 }
+.home-page .cinema-chairs,
 .movie-details .cinema-chairs {
     position: fixed;
     bottom: 0;
+    left: 0;
     width: 100%;
     background-color: transparent;
+}
+.movie-details .ant-spin-nested-loading {
+    position: absolute;
+    top: 40%;
+    left: 52%;
 }
 
 /* --- MovieCard css rules --- */
@@ -231,6 +250,9 @@
 }
 
 @media (max-width: 576px) {
+    .app-icon {
+        width: 50px;
+    }
     .top-tiles .ant-col {
         margin-right: 0;
     }
@@ -240,10 +262,20 @@
     .fixed-tile {
         min-width: 85vw;
     }
+    .movie-details .hero-content .ant-badge sup {
+        margin-top: 10px;
+    }
+    .movie-details .overview {
+        margin-top: 1.3rem;
+    }
 }
 
 @media (max-width: 365px) {
     .movie-details .hero-content .ant-badge sup {
         width: 82.7vw;
+        margin-top: 10px;
+    }
+    .text-title {
+        font-size: 1.3rem;
     }
 }

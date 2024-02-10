@@ -1,23 +1,24 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Badge, Col, Row } from 'antd';
+import { Badge, Col, Row, Flex, Spin } from 'antd';
 import { useQuery } from '@tanstack/react-query';
 import { movieApi } from '../services';
 import cinemaChairs from '../assets/cinema-chairs.svg';
-import { getMovieImgUrlOriginal, formatMovieInfo } from '../helpers';
+import { getMovieImgUrlOriginal, formatMovieInfo, setStateHelper } from '../helpers';
 import { MovieCardFixed } from './shared';
-import { useQueryClient, } from '@tanstack/react-query'
 
 const MovieDetails = () => {
     const { movieId } = useParams();
-    const queryClient = useQueryClient();
 
     const [state, setState] = useState({
         error: false,
         movieDetails: undefined,
         movieCast: undefined,
         movieRecommendations: undefined,
+        isLoading: false,
     });
+
+    const [, forceUpdate] = useState();
 
     const movieDetailsQuery = useQuery({
         queryKey: ['movie-details', movieId],
@@ -34,17 +35,19 @@ const MovieDetails = () => {
         queryFn:  () => movieApi.fetchMovieRecommendations(movieId)
     });
 
-    // useEffect(() => {
-    //     queryClient.refetchQueries(['movie-details']);
-    //     queryClient.refetchQueries(['movie-cast']);
-    //     queryClient.refetchQueries(['movie-recommendations']);
-    // }, []);
-
     useEffect(() => {
         if (state.movieDetails && state.movieCast && state.movieRecommendations) return;
 
+        const isLoading = movieDetailsQuery.isLoading || movieCastQuery.isLoading || recommendationsQuery.isLoading;
+        console.log('isLoading: ', isLoading);
+        setState((prevState) => ({
+            ...prevState,
+            isLoading,
+        }));
+
         if (movieDetailsQuery.isSuccess && movieCastQuery.isSuccess && recommendationsQuery.isSuccess) {
             const movieDetails = movieDetailsQuery?.data;
+            console.log(movieDetailsQuery);
             const movieCast = movieCastQuery?.data;
             const movieCastFilteredData = {
                 director: movieCast?.crew?.filter((member) => member.job === 'Director'),
@@ -68,15 +71,20 @@ const MovieDetails = () => {
     return(
         <div className='movie-details'>
             <div className='hero'>
-                <img
-                    src={state.movieDetails?.imageUrl}
-                    className="image"
-                    alt='movie-image'
-                />
+                {!state.isLoading
+                    ? <img
+                        src={state.movieDetails?.imageUrl}
+                        className="image"
+                        alt='movie-image'
+                    />
+                    : <Spin size="large">
+                        <div className="content" />
+                    </Spin>
+                }
 
                 <div className='top-shadow'/>
                 <Row className='hero-content flex j-center a-center'>
-                    <Col className="gutter-row" xl={13} lg={14} md={16} sm={18} xs={20}>
+                    <Col className="gutter-row" xl={13} lg={14} md={16} sm={18} xs={22}>
                         <h1 className='text-title text-white'>{state.movieDetails?.title}</h1>
                         <p className='text-gray-100'>{formatMovieInfo(state.movieDetails)}</p>
                         <div className='mt-2'>
@@ -89,20 +97,19 @@ const MovieDetails = () => {
             </div>
 
             <Row className='flex j-center a-center'>
-                <Col className="gutter-row py-2" xl={13} lg={14} md={16} sm={18} xs={20}>
-                    <p className='text-white fw-200'>{state.movieDetails?.overview}</p>
+                <Col className="gutter-row py-2" xl={13} lg={14} md={16} sm={18} xs={22}>
+                    <p className='text-white fw-200 overview'>{state.movieDetails?.overview}</p>
                     <p className='text-white pt-2'>Director: {state.movieCast?.director[0].name}</p>
                     <p className='text-white pt-2'>Writer: {state.movieCast?.writer[0]?.name || '[Will update soon]'}</p>
                     <p className='text-white pt-2'>Cast: {state.movieCast?.cast.map((member) => member.name).join(', ')}</p>
                 </Col>
             </Row>
 
-            <div className='flex-col a-center py-3'>
+            <div className='flex-col a-center pt-4 pb-15'>
                 <p className='pb-4 text-title text-white'>Recommendations</p>
                 {state.movieRecommendations?.map((movie) => (
-                    <MovieCardFixed key={movie.title} data={movie} />
+                    <MovieCardFixed key={movie.title} data={movie} forceUpdate={forceUpdate} />
                 ))}
-
             </div>
 
             <img

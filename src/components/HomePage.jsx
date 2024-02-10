@@ -5,6 +5,7 @@ import { sortByPopularityDesc } from '../helpers';
 import { useQuery } from '@tanstack/react-query';
 import { movieApi } from '../services';
 import { MovieCardFixed } from './shared';
+import cinemaChairs from '../assets/cinema-chairs.svg';
 
 const HomePage = () => {
 
@@ -45,13 +46,20 @@ const HomePage = () => {
                 {/* --- Top-5-Movies, First Row --- */}
                 <TopTiles state={state} />
 
-                <div className='flex-col a-center py-3'>
+                <div className='flex-col a-center py-3 pb-15'>
                     <p className='pb-4 text-title text-white'>More Like This</p>
 
-                    {state.trendMovies?.slice(6).map((movie) => (
-                        <MovieCardFixed key={movie.id} data={movie} state={state} />
-                    ))}
+                    <div className='pb-15'>
+                        {state.trendMovies?.slice(6).map((movie) => (
+                            <MovieCardFixed key={movie.id} data={movie} state={state} />
+                        ))}
+                    </div>
                 </div>
+                <img
+                    src={cinemaChairs}
+                    alt='cinema-chairs'
+                    className='cinema-chairs'
+                />
             </Col>
         </Row>
     )

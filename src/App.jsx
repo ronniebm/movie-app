@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Layout } from 'antd';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { MovieDetails, HomePage } from './components';
+import icon from './assets/icon.png';
 import './App.css';
 
 const App = () => {
@@ -16,7 +17,8 @@ const App = () => {
           {/* --- Header. --- */}
           <Layout.Header className='header'>
             <div className='flex j-center a-center h100'>
-              <h1 className='text-title text-center text-white min-width-270px'>
+              <img src={icon} alt='app-icon' className='app-icon' />
+              <h1 className='text-title text-center text-white ml-2'>
                 Movie App
               </h1>
             </div>
