@@ -28,3 +28,7 @@
   color: var(--gray-900);
   background-color: inherit;
 }
+
+body {
+  overflow-x: hidden;
+}
