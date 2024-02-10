@@ -60,6 +60,9 @@
 .pb-4 {
     padding-bottom: 3rem;
 }
+.pb-15 {
+    padding-bottom: 15rem;
+}
 .px-2 {
     padding-left: 1rem !important;
     padding-right: 1rem !important;
@@ -184,11 +187,18 @@
     background-color: rgba(54, 40, 56, 0.6);
     box-shadow: 0 0 0 1px var(--magenta-800);
 }
+.home-page .cinema-chairs,
 .movie-details .cinema-chairs {
     position: fixed;
     bottom: 0;
+    left: 0;
     width: 100%;
     background-color: transparent;
+}
+.movie-details .ant-spin-nested-loading {
+    position: absolute;
+    top: 40%;
+    left: 52%;
 }
 
 /* --- MovieCard css rules --- */

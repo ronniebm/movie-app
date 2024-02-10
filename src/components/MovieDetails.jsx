@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Badge, Col, Row } from 'antd';
+import { Badge, Col, Row, Flex, Spin } from 'antd';
 import { useQuery } from '@tanstack/react-query';
 import { movieApi } from '../services';
 import cinemaChairs from '../assets/cinema-chairs.svg';
-import { getMovieImgUrlOriginal, formatMovieInfo } from '../helpers';
+import { getMovieImgUrlOriginal, formatMovieInfo, setStateHelper } from '../helpers';
 import { MovieCardFixed } from './shared';
 
 const MovieDetails = () => {
@@ -15,6 +15,7 @@ const MovieDetails = () => {
         movieDetails: undefined,
         movieCast: undefined,
         movieRecommendations: undefined,
+        isLoading: false,
     });
 
     const [, forceUpdate] = useState();
@@ -37,8 +38,16 @@ const MovieDetails = () => {
     useEffect(() => {
         if (state.movieDetails && state.movieCast && state.movieRecommendations) return;
 
+        const isLoading = movieDetailsQuery.isLoading || movieCastQuery.isLoading || recommendationsQuery.isLoading;
+        console.log('isLoading: ', isLoading);
+        setState((prevState) => ({
+            ...prevState,
+            isLoading,
+        }));
+
         if (movieDetailsQuery.isSuccess && movieCastQuery.isSuccess && recommendationsQuery.isSuccess) {
             const movieDetails = movieDetailsQuery?.data;
+            console.log(movieDetailsQuery);
             const movieCast = movieCastQuery?.data;
             const movieCastFilteredData = {
                 director: movieCast?.crew?.filter((member) => member.job === 'Director'),
@@ -62,11 +71,16 @@ const MovieDetails = () => {
     return(
         <div className='movie-details'>
             <div className='hero'>
-                <img
-                    src={state.movieDetails?.imageUrl}
-                    className="image"
-                    alt='movie-image'
-                />
+                {!state.isLoading
+                    ? <img
+                        src={state.movieDetails?.imageUrl}
+                        className="image"
+                        alt='movie-image'
+                    />
+                    : <Spin size="large">
+                        <div className="content" />
+                    </Spin>
+                }
 
                 <div className='top-shadow'/>
                 <Row className='hero-content flex j-center a-center'>
@@ -91,12 +105,11 @@ const MovieDetails = () => {
                 </Col>
             </Row>
 
-            <div className='flex-col a-center py-3'>
+            <div className='flex-col a-center pb-15'>
                 <p className='pb-4 text-title text-white'>Recommendations</p>
                 {state.movieRecommendations?.map((movie) => (
                     <MovieCardFixed key={movie.title} data={movie} forceUpdate={forceUpdate} />
                 ))}
-
             </div>
 
             <img
