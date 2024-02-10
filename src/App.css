@@ -250,10 +250,14 @@
     .fixed-tile {
         min-width: 85vw;
     }
+    .movie-details .hero-content .ant-badge sup {
+        margin-top: 10px;
+    }
 }
 
 @media (max-width: 365px) {
     .movie-details .hero-content .ant-badge sup {
         width: 82.7vw;
+        margin-top: 10px;
     }
 }
