@@ -48,6 +48,9 @@
 .mr-3 {
     margin-right: 2rem;
 }
+.ml-2 {
+    margin-left: 1rem;
+}
 .pt-2 {
     padding-top: 1rem;
 }
@@ -134,6 +137,9 @@
 }
 
 /* --- MovieDetails css rules --- */
+.app-icon {
+    width: 100px;
+}
 .movie-details {
     position: relative;
     /* background-color: rgb(41, 0, 0); */
@@ -179,7 +185,7 @@
 }
 .movie-details .hero-content .ant-badge sup {
     height: 27px;
-    width: 90px;
+    width: 110px;
     border-radius: 12px;
     display: flex;
     justify-content: center;
@@ -241,6 +247,9 @@
 }
 
 @media (max-width: 576px) {
+    .app-icon {
+        width: 50px;
+    }
     .top-tiles .ant-col {
         margin-right: 0;
     }
@@ -259,5 +268,11 @@
     .movie-details .hero-content .ant-badge sup {
         width: 82.7vw;
         margin-top: 10px;
+    }
+    .movie-details .overview {
+        padding-top: 4rem;
+    }
+    .text-title {
+        font-size: 1.3rem;
     }
 }

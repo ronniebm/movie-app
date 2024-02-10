@@ -98,7 +98,7 @@ const MovieDetails = () => {
 
             <Row className='flex j-center a-center'>
                 <Col className="gutter-row py-2" xl={13} lg={14} md={16} sm={18} xs={20}>
-                    <p className='text-white fw-200 pt-2'>{state.movieDetails?.overview}</p>
+                    <p className='text-white fw-200 pt-2 overview'>{state.movieDetails?.overview}</p>
                     <p className='text-white pt-2'>Director: {state.movieCast?.director[0].name}</p>
                     <p className='text-white pt-2'>Writer: {state.movieCast?.writer[0]?.name || '[Will update soon]'}</p>
                     <p className='text-white pt-2'>Cast: {state.movieCast?.cast.map((member) => member.name).join(', ')}</p>
