@@ -262,6 +262,9 @@
     .movie-details .hero-content .ant-badge sup {
         margin-top: 10px;
     }
+    .movie-details .overview {
+        margin-top: 4rem;
+    }
 }
 
 @media (max-width: 365px) {
